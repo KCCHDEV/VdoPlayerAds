@@ -24,27 +24,27 @@ A professional digital signage solution optimized for Raspberry Pi, supporting b
 
 ## Super Easy Setup
 
-**Option 1: Interactive Menu (Recommended)**
+**Option 1: Auto Install (Recommended)**
+```bash
+./auto_install.sh
+```
+One command installs everything automatically!
+
+**Option 2: Simple Setup**
+```bash
+./setup.sh
+```
+Alternative auto-installer from project directory.
+
+**Option 3: Interactive Menu**
 ```bash
 ./quick_start.sh
 ```
 Choose option 10 for full installation, then option 1 to start!
 
-**Option 2: One-Command Setup**
+**Option 4: Manual Install**
 ```bash
 ./install_raspi.sh && ./start.sh
-```
-
-**Option 3: Manual Commands**
-```bash
-# Install everything
-./install_raspi.sh
-
-# Start the player
-./start.sh
-
-# Stop the player  
-./stop.sh
 ```
 
 ## Manual Installation
@@ -232,7 +232,9 @@ ads_player/
 ├── manage.py             # Easy management script
 ├── config.json           # Configuration file
 ├── requirements.txt      # Python dependencies
-├── install_raspi.sh      # Installation script
+├── auto_install.sh       # Automatic installer (recommended)
+├── setup.sh              # Simple setup script
+├── install_raspi.sh      # Manual installation script
 ├── quick_start.sh        # Interactive menu
 ├── start.sh              # Simple start script
 ├── stop.sh               # Simple stop script
