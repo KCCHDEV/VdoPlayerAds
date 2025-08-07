@@ -22,19 +22,30 @@ A professional digital signage solution optimized for Raspberry Pi, supporting b
   - 6:19 aspect ratio (1080x1920, etc.)
 - **Power supply** appropriate for your Pi model
 
-## Quick Installation
+## Super Easy Setup
 
-1. **Clone or download** this repository to your Raspberry Pi
-2. **Run the installation script**:
-   ```bash
-   chmod +x install_raspi.sh
-   ./install_raspi.sh
-   ```
-3. **Add your media files** to the `ads` directory
-4. **Test the player**:
-   ```bash
-   python3 ads_player.py
-   ```
+**Option 1: Interactive Menu (Recommended)**
+```bash
+./quick_start.sh
+```
+Choose option 10 for full installation, then option 1 to start!
+
+**Option 2: One-Command Setup**
+```bash
+./install_raspi.sh && ./start.sh
+```
+
+**Option 3: Manual Commands**
+```bash
+# Install everything
+./install_raspi.sh
+
+# Start the player
+./start.sh
+
+# Stop the player  
+./stop.sh
+```
 
 ## Manual Installation
 
@@ -93,47 +104,51 @@ Edit `config.json` to customize the player:
 
 3. The player will automatically detect and load new files when restarted or when pressing 'R'
 
-## Usage
+## Easy Management
 
-### Running the Player
+### Simple Commands
 
 ```bash
-# Direct execution
-python3 ads_player.py
+# Start the ads player
+./start.sh
 
-# Or with virtual environment
-source ads_player_env/bin/activate
-python ads_player.py
+# Stop the ads player
+./stop.sh
+
+# Interactive menu with all options
+./quick_start.sh
+
+# Advanced management
+python3 manage.py start      # Start player
+python3 manage.py stop       # Stop player
+python3 manage.py restart    # Restart player
+python3 manage.py status     # Show status
+python3 manage.py enable     # Enable auto-start on boot
+python3 manage.py disable    # Disable auto-start
+python3 manage.py test       # Create test images
+python3 manage.py list       # List media files
+python3 manage.py logs       # View logs
 ```
 
-### Keyboard Controls
+### Adding Your Media
+
+```bash
+# Copy files to ads directory
+cp /path/to/your/images/* ads/
+
+# Or use the manager
+python3 manage.py add --file /path/to/your/video.mp4
+
+# Create test content
+python3 manage.py test
+```
+
+### Keyboard Controls (when running)
 
 - **ESC or Q**: Quit the player
 - **SPACE**: Skip to next ad
 - **R**: Reload ads from directory
 - **S**: Shuffle current ads
-
-### Auto-start on Boot
-
-Enable the systemd service:
-
-```bash
-sudo systemctl enable ads_player.service
-sudo systemctl start ads_player.service
-```
-
-Monitor the service:
-
-```bash
-# Check status
-sudo systemctl status ads_player.service
-
-# View logs
-sudo journalctl -u ads_player.service -f
-
-# Stop service
-sudo systemctl stop ads_player.service
-```
 
 ## Screen Orientation Setup
 
@@ -214,9 +229,14 @@ chmod -R 755 ads/
 ads_player/
 ├── ads_player.py          # Main application
 ├── video_player.py        # Video playback module
+├── manage.py             # Easy management script
 ├── config.json           # Configuration file
 ├── requirements.txt      # Python dependencies
 ├── install_raspi.sh      # Installation script
+├── quick_start.sh        # Interactive menu
+├── start.sh              # Simple start script
+├── stop.sh               # Simple stop script
+├── test_images.py        # Test content generator
 ├── ads/                  # Media directory
 ├── ads_player.log        # Application logs
 └── README.md            # This file
